@@ -116,7 +116,7 @@ export default function Page() {
     }
 
     try {
-      toast.info("Uploading video to IPFS", {
+      toast.info("Uploading SBT metadata to IPFS", {
         position:"top-center"
       })
       const uploadImage = await pinata.upload.file(file);
@@ -172,7 +172,7 @@ export default function Page() {
         position: "top-center"
       });
       setShouldFetchNfts(true);
-      onRouteChange("home");
+      onRouteChange("explore");
     } catch (e) {
       console.log("error", e);
       toast.error(`Error minting SBT: ${e}`, {
