@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { toast, ToastContainer } from 'react-toastify';
+import toast from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface MintProps {

@@ -90,7 +90,7 @@ export default function Page() {
           console.log(nftDataArray)
           setNfts(nftDataArray);
         } catch (e) {
-          toast.error("Error fetching NFTs", {
+          toast.error("Error fetching SBTs", {
             pauseOnHover: false,
             position: "top-center",
           });
@@ -129,7 +129,7 @@ export default function Page() {
       return metadata.IpfsHash;
     } catch (error) {
       console.error("Error uploading to Pinata:", error);
-      toast.error("Minting NFT failed.", {
+      toast.error("Minting SBT failed.", {
         position: "top-center"
       });
       throw new Error("Upload to Pinata failed.");
@@ -174,7 +174,7 @@ export default function Page() {
       onRouteChange("home");
     } catch (e) {
       console.log("error", e);
-      toast.error(`Error minting NFT: ${e}`, {
+      toast.error(`Error minting SBT: ${e}`, {
         position: "top-center"
       });
     } finally {
