@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import toast from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface MintProps {
@@ -43,7 +43,7 @@ const Mint: React.FC<MintProps> = ({ uploadToPinata, mintNFT, isMinting }) => {
 
     const handleMint = async () => {
         if (!file || !name || !description) {
-            toast.error("Please complete all the field", {
+            toast.error("Please complete all the fields", {
                 position: "top-right",
             })
             return;
@@ -63,65 +63,67 @@ const Mint: React.FC<MintProps> = ({ uploadToPinata, mintNFT, isMinting }) => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen text-white pt-10">
-            <h2 className="text-3xl font-bold mb-6">Mint Your SBT</h2>
-            <div 
-                {...getRootProps({ 
-                    className: `rounded-lg text-center cursor-pointer ${
-                        file ? 'pb-3' : 'border-2 border-dashed border-purple-500 p-6 m-4 '
-                    }`
-                })}
-            >
-                <input {...getInputProps()} />
-                {file ? (
-                    <div>
-                        <img
-                            src={file.preview}
-                            alt="Selected"
-                            className="max-h-[30vh] rounded-lg"
-                        />
-                    </div>
-                ) : (
-                    <p className="text-purple-500">Drag & drop an image file, or click to select one <br/><span className='text-sm text-red-600 font-bold'>Max size only 2 MB</span></p>
-                )}
-            </div>
-            {error && <p className="text-red-500 mb-4">{error}</p>}
-            {file && (
-                <button
+        <div>
+            <div className="flex flex-col items-center justify-center min-h-screen text-white pt-10">
+                <h2 className="text-3xl font-bold mb-6">Mint Your SBT</h2>
+                <div 
+                    {...getRootProps({ 
+                        className: `rounded-lg text-center cursor-pointer ${
+                            file ? 'pb-3' : 'border-2 border-dashed border-purple-500 p-6 m-4 '
+                        }`
+                    })}
+                >
+                    <input {...getInputProps()} />
+                    {file ? (
+                        <div>
+                            <img
+                                src={file.preview}
+                                alt="Selected"
+                                className="max-h-[30vh] rounded-lg"
+                            />
+                        </div>
+                    ) : (
+                        <p className="text-purple-500">Drag & drop an image file, or click to select one <br/><span className='text-sm text-red-600 font-bold'>Max size only 2 MB</span></p>
+                    )}
+                </div>
+                {error && <p className="text-red-500 mb-4">{error}</p>}
+                {file && (
+                    <button
                     onClick={clearImage}
                     className="bg-red-500 text-white rounded-lg px-4 py-2 mb-4"
+                    >
+                        Clear
+                    </button>
+                )}
+
+                <div className="w-full max-w-md mb-4">
+                    <label className="block mb-2">Name:</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter SBT Name"
+                        className="w-full p-2 rounded-lg border border-gray-300 text-black"
+                        />
+                </div>
+
+                <div className="w-full max-w-md mb-4">
+                    <label className="block mb-2">Description:</label>
+                    <textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Enter SBT Description"
+                        className="w-full p-2 rounded-lg border border-gray-300 text-black"
+                        />
+                </div>
+                <button
+                    onClick={handleMint}
+                    disabled={isLoading || isMinting || !!error}
+                    className={`bg-purple-500 text-white rounded-lg px-4 py-2 ${isLoading || isMinting ? 'cursor-not-allowed' : 'hover:bg-purple-600'}`}
                 >
-                    Clear
+                    {isLoading || isMinting ? 'Minting...' : 'Mint SBT'}
                 </button>
-            )}
-
-            <div className="w-full max-w-md mb-4">
-                <label className="block mb-2">Name:</label>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter SBT Name"
-                    className="w-full p-2 rounded-lg border border-gray-300 text-black"
-                />
             </div>
-
-            <div className="w-full max-w-md mb-4">
-                <label className="block mb-2">Description:</label>
-                <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Enter SBT Description"
-                    className="w-full p-2 rounded-lg border border-gray-300 text-black"
-                />
-            </div>
-            <button
-                onClick={handleMint}
-                disabled={isLoading || isMinting || !!error}
-                className={`bg-purple-500 text-white rounded-lg px-4 py-2 ${isLoading || isMinting ? 'cursor-not-allowed' : 'hover:bg-purple-600'}`}
-            >
-                {isLoading || isMinting ? 'Minting...' : 'Mint SBT'}
-            </button>
         </div>
     );
 };
