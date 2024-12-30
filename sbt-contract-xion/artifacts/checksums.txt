@@ -1,0 +1,1 @@
+fa15b17b37b0248e22f7e84a6987d7d317c517d8d869a6bc7ac7278cb8efaa8c  sbt_contract_xion.wasm
