@@ -45,6 +45,7 @@ const Mint: React.FC<MintProps> = ({ uploadToPinata, mintNFT, isMinting }) => {
         if (!file || !name || !description) {
             toast.error("Please complete all the fields", {
                 position: "top-right",
+                pauseOnHover: false,
             })
             return;
         }
@@ -64,6 +65,7 @@ const Mint: React.FC<MintProps> = ({ uploadToPinata, mintNFT, isMinting }) => {
 
     return (
         <div>
+            <ToastContainer />
             <div className="flex flex-col items-center justify-center min-h-screen text-white pt-10">
                 <h2 className="text-3xl font-bold mb-6">Mint Your SBT</h2>
                 <div 

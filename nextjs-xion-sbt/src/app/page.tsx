@@ -130,7 +130,8 @@ export default function Page() {
     } catch (error) {
       console.error("Error uploading to Pinata:", error);
       toast.error("Minting SBT failed.", {
-        position: "top-center"
+        position: "top-center",
+        pauseOnHover: false,
       });
       throw new Error("Upload to Pinata failed.");
     }
