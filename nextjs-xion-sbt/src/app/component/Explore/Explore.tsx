@@ -22,7 +22,7 @@ const Explore: React.FC<ExploreProps> = ({
   isLoading,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center min-h-screen w-full gradient-bg-welcome">
+    <div className="flex flex-col md:flex-row justify-center items-center min-h-screen w-full gradient-bg-welcome pt-[11vh]">
         {isConnected ? (
           isLoading ? (
             <div className="text-center">

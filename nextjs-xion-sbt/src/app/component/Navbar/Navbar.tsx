@@ -14,7 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({
   Abstraxion,
 }) => {
   return (
-    <div className="fixed z-10 backdrop-blur-sm mt-5">
+    <div className="fixed z-10 backdrop-blur-sm pt-5">
       <section className="relative mx-auto">
         <nav className="flex justify-between items-center text-white w-screen px-20">
           <div className="flex items-center">
